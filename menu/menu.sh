@@ -3,22 +3,25 @@
 # Define the scripts you want to run and their descriptions
 declare -A scripts
 scripts=(
-    ["1) Install components (KAMP, KLIPPAIN, GAB Utilities)"]="./utilities.sh"
-    ["2) CanBus"]="./canbusmnu.sh"
-    ["EXIT"]="exit 0"
+    ["1) Run kiauh"]="~/kiauh/kiauh.sh"
+    ["2) Install components (KAMP, KLIPPAIN, GAB Utilities)"]="./utilities.sh"
+    ["3) CanBus"]="./canbusmnu.sh"
+
     # Add more scripts here...
 )
 
 # Define the order of the options
 declare -a order
 order=(
-    "1) Install components (KAMP, KLIPPAIN, GAB Utilities)"
-    "2) CanBus"
-    "EXIT"
+    "1) Run kiauh"
+    "2) Install components (KAMP, KLIPPAIN, GAB Utilities)"
+    "3) CanBus"
+
 )
 
 # Create a menu using dialog
-CMD=(dialog --colors --nocancel --nook --no-shadow --no-lines --clear --backtitle "Menu" --title "Main Menu" --menu "Select options:" 30 70 10)
+CMD=(/usr/bin/dialog --colors --no-ok --nocancel --no-lines --clear --backtitle "Menu" --title "Main Menu" --extra-button --extra-label "Exit" --menu "Select options:" 30 70 10)
+
 
 # Generate the options for the dialog command
 OPTIONS=()
@@ -30,6 +33,9 @@ done
 CHOICE=$("${CMD[@]}" "${OPTIONS[@]}" 2>&1 >/dev/tty)
 
 clear
-
+#check if a choice was made
+if [ -z "$CHOICE" ]; then
+    exit
+fi
 # Otherwise, run the selected script
 bash "${scripts[$CHOICE]}"
