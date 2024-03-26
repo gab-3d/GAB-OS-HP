@@ -1,12 +1,13 @@
 #!/bin/bash
 
+
 # Define the scripts you want to run and their descriptions
 declare -A scripts
 scripts=(
-    ["1) Run kiauh"]="~/kiauh/kiauh.sh"
-    ["2) Install components (KAMP, KLIPPAIN, GAB Utilities)"]="./utilities.sh"
-    ["3) CanBus"]="./canbusmnu.sh"
-    ["4) Flash MK3"]="./canbusmnu.sh"
+    ["1) Run kiauh"]="$HOME/kiauh/kiauh.sh"
+    ["2) Install components (KAMP, KLIPPAIN, GAB Utilities)"]="$HOME/GAB-OS-HP/menu/utilities.sh"
+    ["3) CanBus"]="$HOME/GAB-OS-HP/menu/canbusmnu.sh"
+    ["4) Flash MK3"]="$HOME/GAB-OS-HP/menu/mk3Flash.sh"
     # Add more scripts here...
 )
 
