@@ -6,7 +6,7 @@ scripts=(
     ["1) Run kiauh"]="~/kiauh/kiauh.sh"
     ["2) Install components (KAMP, KLIPPAIN, GAB Utilities)"]="./utilities.sh"
     ["3) CanBus"]="./canbusmnu.sh"
-
+    ["4) Flash MK3"]="./canbusmnu.sh"
     # Add more scripts here...
 )
 
@@ -16,7 +16,7 @@ order=(
     "1) Run kiauh"
     "2) Install components (KAMP, KLIPPAIN, GAB Utilities)"
     "3) CanBus"
-
+    "4) Flash MK3"
 )
 
 # Create a menu using dialog
