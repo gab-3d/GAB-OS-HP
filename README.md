@@ -1,3 +1,3 @@
 # GAB-OS-HP
 
-test
+librerie per GABOS
