@@ -45,13 +45,13 @@ done
 if [ $CHOICE -eq $((${#descriptions[@]}-1)) ]; then
     clear
     echo "Exiting..."
-    exit 0
+    return 0
 fi
 #check is choice is empty and exit
 if [ -z "$CHOICE" ]; then
     clear
     echo "Exiting..."
-    exit 0
+    return 0
 fi
 clear
 

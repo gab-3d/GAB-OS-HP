@@ -42,7 +42,7 @@ CHOICE=$("${CMD[@]}" "${OPTIONS[@]}" 2>&1 >/dev/tty)
 if [ -z "$CHOICE" ]; then
     clear
     echo "Exiting..."
-    exit 0
+    return 0
 fi
 
 
