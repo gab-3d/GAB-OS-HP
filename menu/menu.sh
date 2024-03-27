@@ -53,9 +53,8 @@ if [ -z "$CHOICE" ]; then
     echo "Exiting..."
     exit 0
 fi
-
-
+clear
 
 # Execute the selected script located in $HOME
-bash "$HOME/${scripts[$CHOICE]}"
+bash "$HOME/${scripts[$CHOICE]}" 
  

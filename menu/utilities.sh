@@ -53,7 +53,7 @@ for index in "${!descriptions[@]}"; do
     if [ "${descriptions[$index]}" = "$CHOICE" ]; then
         clear
         eval "bash ${scripts[$index]}"
-        
+        exit 0
        
 
     fi
@@ -63,6 +63,7 @@ for index in "${!descriptionReinstalls[@]}"; do
     if [ "${descriptionReinstalls[$index]}" = "$CHOICE" ]; then
          clear
          eval "bash ${scripts[$index]}"
+         exit 0
     fi
 done
 
