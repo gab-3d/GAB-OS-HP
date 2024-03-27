@@ -9,7 +9,7 @@
         "description": "Install Klippain",
         "descriptionReinstall": "Klippain installed reinstall",
         "script": "$HOME/GAB-OS-HP/menu/klippain.sh",
-        "fileCheck": "$HOME/klippain/README.md "
+        "fileCheck": "$HOME/klippain_shaketune/README.md"
     },
     {
         "description": "Install GAB Utlities",
