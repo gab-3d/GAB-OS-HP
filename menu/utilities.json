@@ -6,8 +6,8 @@
         "fileCheck": "$HOME/Klipper-Adaptive-Meshing-Purging/README.md "
     },
     {
-        "description": "Install Klippain",
-        "descriptionReinstall": "Klippain installed reinstall",
+        "description": "Install Klippain Shake and Tune",
+        "descriptionReinstall": " Klippain Shake and Tune installed reinstall",
         "script": "$HOME/GAB-OS-HP/menu/klippain.sh",
         "fileCheck": "$HOME/klippain_shaketune/README.md"
     },
