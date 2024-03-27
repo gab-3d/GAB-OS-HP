@@ -7,7 +7,7 @@
     },
     {
         "description": "Install Klippain Shake and Tune",
-        "descriptionReinstall": " Klippain Shake and Tune installed reinstall",
+        "descriptionReinstall": "Klippain Shake and Tune installed reinstall",
         "script": "$HOME/GAB-OS-HP/menu/klippain.sh",
         "fileCheck": "$HOME/klippain_shaketune/README.md"
     },
