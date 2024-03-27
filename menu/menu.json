@@ -1,0 +1,19 @@
+[
+    {
+        "description": "Run kiauh",
+        "script": "kiauh/kiauh.sh"
+    },
+    {
+        "description": "Install components (KAMP, KLIPPAIN, GAB Utilities)",
+        "script": "GAB-OS-HP/menu/utilities.sh"
+    },
+    {
+        "description": "Flash MK3",
+        "script": "GAB-OS-HP/menu/mk3Flash.sh"
+    }
+    ,
+    {
+        "description": "<-- Exit -->",
+        "script": "exit"
+    }
+]

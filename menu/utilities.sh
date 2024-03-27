@@ -1,42 +1,71 @@
 #!/bin/bash
 
-# Define the scripts you want to run and their descriptions
-declare -A scripts
-scripts=(
-    ["1) Install KAMP"]="~/kiauh/kiauh.sh"
-    ["2) Install KLIPPAIN"]="./utilities.sh"
-    ["3) Install GAB Utilities"]="./canbusmnu.sh"
-    ["4) Main Menu"]="./menu.sh"
+# Check if jq is installed
+if ! command -v jq &> /dev/null
+then
+    echo "jq could not be found, installing..."
+    sudo apt-get install jq -y
+fi
 
-    # Add more scripts here...
-)
+# Load descriptions and scripts from the JSON file
+mapfile -t scripts < <(jq -r '.[].script' utilities.json)
+mapfile -t descriptions < <(jq -r '.[].description' utilities.json)
+mapfile -t descriptionReinstalls < <(jq -r '.[].descriptionReinstall' utilities.json)
+mapfile -t fileChecks < <(jq -r '.[].fileCheck' utilities.json)
 
-# Define the order of the options
-declare -a order
-order=(
-    "1) Install KAMP"
-    "2) Install KLIPPAIN"
-    "3) Install GAB Utilities"
-    "4) Main Menu"
-)
+
 
 # Create a menu using dialog
-CMD=(/usr/bin/dialog --colors --no-ok --nocancel --no-lines --clear --backtitle "Menu" --title "Main Menu" --extra-button --extra-label "Exit" --menu "Select options:" 30 70 10)
-
+CMD=(/usr/bin/dialog --colors  --nocancel --no-lines --clear --backtitle "Menu" --title "Main Menu" --menu "Select options:" 30 70 10)
 
 # Generate the options for the dialog command
 OPTIONS=()
-for description in "${order[@]}"; do
-    OPTIONS+=("$description" "")
+for index in "${!descriptions[@]}"; do
+
+    #check if script file exists if exists show descriptionReinstall else show description
+    fileToCheck=$(eval "echo \"${fileChecks[$index]}\"")
+    
+    if [ -f $fileToCheck ]; then
+        OPTIONS+=("${descriptionReinstalls[$index]}" "")
+    else
+        OPTIONS+=("${descriptions[$index]}" "")
+    fi
+
 done
+
 
 # Prompt the user to make a choice from the menu
 CHOICE=$("${CMD[@]}" "${OPTIONS[@]}" 2>&1 >/dev/tty)
 
-clear
-#check if a choice was made
+
+# Check if the user selected the "Exit" button or pressed escape in case clear the screen from dialog before exiting
 if [ -z "$CHOICE" ]; then
-    exit
+    clear
+    echo "Exiting..."
+    exit 0
 fi
-# Otherwise, run the selected script
-bash "${scripts[$CHOICE]}"
+
+
+
+
+#find index of the selected option
+for index in "${!descriptions[@]}"; do
+    if [ "${descriptions[$index]}" = "$CHOICE" ]; then
+        clear
+        eval "bash ${scripts[$index]}"
+        
+       
+
+    fi
+done
+
+for index in "${!descriptionReinstalls[@]}"; do
+    if [ "${descriptionReinstalls[$index]}" = "$CHOICE" ]; then
+         clear
+         eval "bash ${scripts[$index]}"
+    fi
+done
+
+# Execute the selected script located in $HOME
+#bash "$HOME/${scripts[$CHOICE]}"
+ 

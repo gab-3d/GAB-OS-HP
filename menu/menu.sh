@@ -1,42 +1,61 @@
 #!/bin/bash
+cd ~/GAB-OS-HP/menu
+# Check if jq is installed
+if ! command -v jq &> /dev/null
+then
+    echo "jq could not be found, installing..."
+    sudo apt-get install jq -y
+fi
+
+# Load descriptions and scripts from the JSON file
+mapfile -t scripts < <(jq -r '.[].script' menu.json)
+mapfile -t descriptions < <(jq -r '.[].description' menu.json)
 
 
-# Define the scripts you want to run and their descriptions
-declare -A scripts
-scripts=(
-    ["1) Run kiauh"]="$HOME/kiauh/kiauh.sh"
-    ["2) Install components (KAMP, KLIPPAIN, GAB Utilities)"]="$HOME/GAB-OS-HP/menu/utilities.sh"
-    ["3) CanBus"]="$HOME/GAB-OS-HP/menu/canbusmnu.sh"
-    ["4) Flash MK3"]="$HOME/GAB-OS-HP/menu/mk3Flash.sh"
-    # Add more scripts here...
-)
 
-# Define the order of the options
-declare -a order
-order=(
-    "1) Run kiauh"
-    "2) Install components (KAMP, KLIPPAIN, GAB Utilities)"
-    "3) CanBus"
-    "4) Flash MK3"
-)
+# Create a menu using dialog add an exit button
 
-# Create a menu using dialog
-CMD=(/usr/bin/dialog --colors --no-ok --nocancel --no-lines --clear --backtitle "Menu" --title "Main Menu" --extra-button --extra-label "Exit" --menu "Select options:" 30 70 10)
-
+CMD=(/usr/bin/dialog --colors  --nocancel --no-lines --clear --backtitle "Menu" --title "Main Menu" --extra-button --extra-label "Exit" --menu "Select options:" 30 70 10)
 
 # Generate the options for the dialog command
 OPTIONS=()
-for description in "${order[@]}"; do
-    OPTIONS+=("$description" "")
+for index in "${!descriptions[@]}"; do
+    OPTIONS+=("${descriptions[$index]}" "")
+    //echo "${scripts[$index]}" 
 done
 
 # Prompt the user to make a choice from the menu
 CHOICE=$("${CMD[@]}" "${OPTIONS[@]}" 2>&1 >/dev/tty)
 
-clear
-#check if a choice was made
-if [ -z "$CHOICE" ]; then
-    exit
+# Check if the user selected the "Exit" button
+if [ $? -eq 3 ]; then
+    echo "Exiting..."
+    exit 0
 fi
-# Otherwise, run the selected script
-bash "${scripts[$CHOICE]}"
+
+#find index of the selected option
+for index in "${!descriptions[@]}"; do
+    if [ "${descriptions[$index]}" = "$CHOICE" ]; then
+        CHOICE=$index
+        break
+    fi
+done
+
+#check is choice is eqal to the last element or is empty and exit
+if [ $CHOICE -eq $((${#descriptions[@]}-1)) ]; then
+    clear
+    echo "Exiting..."
+    exit 0
+fi
+#check is choice is empty and exit
+if [ -z "$CHOICE" ]; then
+    clear
+    echo "Exiting..."
+    exit 0
+fi
+
+
+
+# Execute the selected script located in $HOME
+bash "$HOME/${scripts[$CHOICE]}"
+ 

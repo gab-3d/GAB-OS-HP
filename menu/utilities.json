@@ -1,0 +1,27 @@
+[
+    {
+        "description": "Install Klipper Adaptive Meshing Purging",
+        "descriptionReinstall": "Klipper Adaptive Meshing Purging installed reinstall",
+        "script": "$HOME/GAB-OS-HP/menu/kamp.sh",
+        "fileCheck": "$HOME/Klipper-Adaptive-Meshing-Purging/README.md "
+    },
+    {
+        "description": "Install Klippain",
+        "descriptionReinstall": "Klippain installed reinstall",
+        "script": "$HOME/GAB-OS-HP/menu/klippain.sh",
+        "fileCheck": "$HOME/klippain/README.md "
+    },
+    {
+        "description": "Install GAB Utlities",
+        "descriptionReinstall": "GAB Utlities installed reinstall",
+        "script": "$HOME/GAB-OS-HP/menu/gabutilities.sh",
+        "fileCheck": "$HOME/Gab3d-Klipper-Utilities/README.md "
+    },
+    {
+        "description": "<-- BACK",
+        "descriptionReinstall": "<-- BACK",
+        "script": "$HOME/GAB-OS-HP/menu/menu.sh",
+        "fileCheck": "$HOME/GAB-OS-HP/menu/menu.sh"
+    }
+
+]
