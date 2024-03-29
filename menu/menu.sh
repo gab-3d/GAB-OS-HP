@@ -7,6 +7,11 @@ then
     sudo apt-get install jq -y
 fi
 
+
+
+
+
+
 # Load descriptions and scripts from the JSON file
 mapfile -t scripts < <(jq -r '.[].script' menu.json)
 mapfile -t descriptions < <(jq -r '.[].description' menu.json)
@@ -45,13 +50,16 @@ done
 if [ $CHOICE -eq $((${#descriptions[@]}-1)) ]; then
     clear
     echo "Exiting..."
-    return 0
+    exit 0
 fi
+
+
 #check is choice is empty and exit
 if [ -z "$CHOICE" ]; then
     clear
     echo "Exiting..."
-    return 0
+    
+    exit 0
 fi
 clear
 
