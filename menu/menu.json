@@ -8,6 +8,10 @@
         "script": "GAB-OS-HP/menu/utilities.sh"
     },
     {
+        "description": "CanBus utilities",
+        "script": "GAB-OS-HP/menu/canbus.sh"
+    },
+    {
         "description": "Flash MK3",
         "script": "GAB-OS-HP/menu/mk3Flash.sh"
     }

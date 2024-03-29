@@ -1,0 +1,26 @@
+[
+    {
+        "description": "Install CanBus 500k",
+        "descriptionReinstall": "CanBus installed reinstall 500k",
+        "script": "$HOME/GAB-OS-HP/menu/installCan.sh can 500000",
+        "fileCheck": "/etc/network/interfaces.d/can0"
+    },
+    {
+        "description": "Install CanBus 1M",
+        "descriptionReinstall": "CanBus installed reinstall 1M",
+        "script": "$HOME/GAB-OS-HP/menu/installCan.sh can 1000000",
+        "fileCheck": "/etc/network/interfaces.d/can0"
+    },
+    {
+        "description": "Install CanBus CanBridge 500k",
+        "descriptionReinstall": "CanBus CanBridge installed reinstall 500k",
+        "script": "$HOME/GAB-OS-HP/menu/installCan.sh bridge 500000",
+        "fileCheck": "/etc/network/interfaces.d/can0"
+    },
+    {
+        "description": "Install CanBus CanBridge 1M",
+        "descriptionReinstall": "CanBus CanBridge installed reinstall 1M",
+        "script": "$HOME/GAB-OS-HP/menu/installCan.sh bridge 1000000",
+        "fileCheck": "/etc/network/interfaces.d/can0"
+    }
+]
