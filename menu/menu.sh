@@ -8,9 +8,13 @@ then
 fi
 
 
+# Check if dialog is installed
 
-
-
+if ! command -v dialog &> /dev/null
+then
+    echo "jq could not be found, installing..."
+    sudo apt-get install dialog -y
+fi
 
 # Load descriptions and scripts from the JSON file
 mapfile -t scripts < <(jq -r '.[].script' menu.json)
